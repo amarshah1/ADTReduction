@@ -1,2 +1,3 @@
 (test
- (name ADTReduction))
+ (name reduce)
+ (libraries ounit2 flatten))

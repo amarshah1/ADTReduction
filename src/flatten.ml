@@ -1,28 +1,5 @@
 module PA = Smtlib_utils.V_2_6.Ast
-open flatNNF
 
-(* let () = print_endline "Hello, World!" *)
-
-(* This gives us a list of AST statements which is what we want *)
-let parsed_file = Smtlib_utils.V_2_6.parse_file "test.smt2"
-
-(*Printing the AST*)
-let () = match parsed_file with
-  | Ok(f) -> Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) f
-  | Error(_) -> Format.print_string "oh no"
-
-
-let inlined_file = flatNNF.inline_statements parsed_file
-
-  (*Printing the AST*)
-let () = match inlined_file with
-| Ok(f) -> Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) f
-| Error(_) -> Format.print_string "oh no"
-
-(* module PA = Smtlib_utils.V_2_6.Ast
-
-
-(* Substitute a term for a variable in a term *)
 let rec substitute var args (sub_term : PA.term) (acc_term : PA.term) =
   match acc_term with
   | Const v when v = var -> sub_term
@@ -90,17 +67,3 @@ let inline_statements stmts =
   (*Goes from PA.stmt to PA.statement with the location being None*)
   let stmt_to_statement (s: PA.stmt) : PA.statement = {PA.stmt = s; loc = None}
 
-  let stmt_list = begin match (Smtlib_utils.V_2_6.parse_file "test.smt2") with
-                        |Ok(f) -> f
-                        |Error(_) -> print_string "failure!!!"; []
-                    end
-
-  (*Printing the AST*)
-(* Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) stmt_list; *)
-  
-  
-  let inlined_stmt_list = inline_statements (List.map statement_to_stmt stmt_list)
-
-  let () = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) stmt_list
-
-  let () = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) (List.map stmt_to_statement inlined_stmt_list) *)

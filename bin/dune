@@ -1,0 +1,5 @@
+(executable
+ (public_name reduce)
+ (name reduce)
+ (libraries smtlib-utils flatten)
+ (flags (:standard -warn-error -A)))

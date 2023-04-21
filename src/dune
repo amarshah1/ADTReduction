@@ -1,6 +1,3 @@
-(executable
- (name flatNNF)
- (modules flatNNF)
- (libraries ADTReduction smtlib-utils)
- (public_name flatNNF)
- (flags (:standard -warn-error -A)))
+(library
+ (name flatten)
+ (libraries smtlib-utils))
