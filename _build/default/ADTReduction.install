@@ -1,9 +1,0 @@
-lib: [
-  "_build/install/default/lib/ADTReduction/META"
-  "_build/install/default/lib/ADTReduction/dune-package"
-  "_build/install/default/lib/ADTReduction/opam"
-]
-bin: [
-  "_build/install/default/bin/ADTReduction"
-  "_build/install/default/bin/flatNNF"
-]
