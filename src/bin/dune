@@ -1,0 +1,5 @@
+(executable
+ (public_name ADTReduction)
+ (name main)
+ (libraries ADTReduction smtlib-utils flatNNF)
+ (flags (:standard -warn-error -A)))
