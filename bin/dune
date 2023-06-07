@@ -1,5 +1,5 @@
 (executable
  (public_name reduce)
  (name reduce)
- (libraries smtlib-utils flatten)
+ (libraries smtlib-utils R1inline R2flatten R3normalize R4reduce_rules R5reduce_axioms Typecheck Context)
  (flags (:standard -warn-error -A)))

@@ -1,3 +1,47 @@
 (library
- (name flatten)
- (libraries smtlib-utils))
+  (name Context)
+  (flags :standard -warn-error -A)
+  (libraries smtlib-utils containers R1inline)
+  (modules Context))
+
+(library
+ (name R1inline)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils)
+ (modules R1inline))
+
+(library
+ (name R2flatten)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils containers Context)
+ (modules R2flatten))
+
+(library
+ (name R3normalize)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils R1inline R2flatten Context)
+ (modules R3normalize))
+
+(library
+ (name R4reduce_rules)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils R1inline R2flatten R3normalize Context)
+ (modules R4reduce_rules))
+
+ (library
+ (name R5reduce_axioms)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils R1inline R2flatten R3normalize R4reduce_rules Context)
+ (modules R5reduce_axioms))
+
+ (library
+ (name Typecheck)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils R1inline R2flatten R3normalize)
+ (modules Typecheck))
+
+  (executable
+ (name Fullreduction)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils R1inline R2flatten R3normalize R4reduce_rules R5reduce_axioms Context)
+ (modules Fullreduction))
