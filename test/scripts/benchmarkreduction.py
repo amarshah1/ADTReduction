@@ -1,5 +1,4 @@
 import random
-from manualreduction import *
 # from fuzzing import *
 # import z3
 import os
@@ -88,12 +87,8 @@ for t in folders.keys():
             if smt_query_post_reduction == "TIMEOUT":
                 print("TIMED OUT on Reduction")
                 total_time = timeout + 1
-                z3_time_pre += total_time
-                pre_z3_times.append(total_time)
                 z3_time_post += total_time
                 post_z3_times.append(total_time)
-                cvc5_time_pre += total_time
-                pre_cvc5_times.append(total_time)
                 cvc5_time_post += total_time
                 post_cvc5_times.append(total_time)
                 mc2_time_post += total_time
