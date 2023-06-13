@@ -1,6 +1,7 @@
 module PA = Smtlib_utils.V_2_6.Ast
-exception UnsupportedQuery of string
 
+exception UnsupportedQuery of string
+open Context
 let rec substitute var args (sub_term : PA.term) (acc_term : PA.term)  =
   match acc_term with
   | Const v when v = var -> sub_term
@@ -57,8 +58,5 @@ let inline_statements stmts =
   in
   aux [] [] stmts
 
-  let statement_to_stmt (s: PA.statement) = s.PA.stmt
 
-  (*Goes from PA.stmt to PA.statement with the location being None*)
-  let stmt_to_statement (s: PA.stmt) : PA.statement = {PA.stmt = s; loc = None}
 

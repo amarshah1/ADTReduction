@@ -12,9 +12,9 @@
 (declare-fun i0 () Real)
 (declare-fun i1 () Real)
 (assert (is-Cons Nil))
-(assert (or (is-Cons Nil) (= l0 Nil) (= l1 Nil) (= l0 Nil)))
-(assert (or (is-Nil Nil) (is-Nil l0) (= l0 Nil) (= l1 l0)))
-(assert (or (= l0 Nil) (is-Nil Nil) (is-Cons Nil) (= l0 Nil)))
+(assert (is-Nil Nil))
+(assert (or (is-Nil Nil) (is-Nil Nil) (is-Nil Nil) (is-Cons Nil)))
+(assert (is-Cons Nil))
 (assert
  (or (and (is-Nil l1) (not (is-Cons l1)))
   (and (not (is-Nil l1)) (is-Cons l1))))

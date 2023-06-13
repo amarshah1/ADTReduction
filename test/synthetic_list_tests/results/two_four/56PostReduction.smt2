@@ -11,10 +11,10 @@
 (declare-fun l1 () MyList)
 (declare-fun i0 () Real)
 (declare-fun i1 () Real)
-(assert (or (is-Nil Nil) (= l1 Nil) (= l0 Nil) (is-Nil Nil)))
-(assert (is-Cons Nil))
-(assert (and (is-Nil Nil) (= l1 Nil)))
+(assert (not (= l0 Nil)))
+(assert (or (is-Cons Nil) (is-Cons Nil) (= l1 Nil)))
 (assert (= l1 Nil))
+(assert (is-Cons l0))
 (assert
  (or (and (is-Nil l1) (not (is-Cons l1)))
   (and (not (is-Nil l1)) (is-Cons l1))))

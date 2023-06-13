@@ -28,7 +28,7 @@
 (declare-fun cv7 () MyList) 
 (declare-fun cv8 () MyList) 
 (declare-fun cv9 () MyList) 
-(assert (and (and (and (is-Nil Nil) (= Nil Nil)) (and (= l1 Nil) (is-Nil l1)) (and (= l0 Nil) (is-Nil l0)))) )
+(assert (and (not (= l1 l1))) )
 (assert (and (is-Cons Nil) (= Nil (Cons cv0 cv1)) (= cv0 (Head Nil)) (= cv1 (Tail Nil))) )
 (assert (and (not (= l1 Nil))) )
 (assert (and (= l0 Nil) (is-Nil l0)) )

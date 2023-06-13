@@ -1,7 +1,6 @@
 (* Given a formula in flattened NNF form, we want to perform our reduction*)
 module PA = Smtlib_utils.V_2_6.Ast
 open Containers
-open R1inline
 exception UnsupportedQuery of string
 
 module StrTbl = CCHashtbl.Make(CCString)
@@ -19,6 +18,7 @@ module Ctx = struct
     mutable adt_with_variables: ((string list) * PA.ty) StrTbl.t; (*way to look up adt and get a list of variables. used in R5*)
     mutable adt_with_selectors: (string * PA.ty) list StrTbl.t; (* way to look up the different selectors in R%*)
     mutable vars_created: int;
+    mutable mutually_recursive_datatypes: bool;
   }
 
   let t : t = {
@@ -33,6 +33,7 @@ module Ctx = struct
     adt_with_variables = StrTbl.create 64;
     adt_with_selectors = StrTbl.create 64;
     vars_created = 0;
+    mutually_recursive_datatypes = true;
   }
 
   let add_fun_def name var_type : unit = StrTbl.add t.function_definition name var_type
@@ -125,22 +126,39 @@ let rec get_type (term: PA.term) : PA.ty =
   end
 
 
-  (* General Helper Functions *)
+(* General Helper Functions *)
 
-  (* will tell you if two PA.ty are equal*)
+let statement_to_stmt (s: PA.statement) = s.PA.stmt
 
-    (*I think this is not necessary since we can ue the built in equaity*)
-  (* let ty_equal (ty1 : PA.ty) (ty2 : PA.ty) : bool = 
-    begin match ty1 with
-      | Ty_bool ->
-          begin match ty2 with
-            | Ty_bool -> true
-            | _ -> false
-          end
-      | Ty_real ->
-          begin match ty2 with
-            | Ty_real -> true
-            | _ -> false
-          end
-      | Ty_app of ty_var * ty list
-      | Ty_arrow of ty list * ty *)
+(*Goes from PA.stmt to PA.statement with the location being None*)
+let stmt_to_statement (s: PA.stmt) : PA.statement = {PA.stmt = s; loc = None}
+
+let statement_printer lst = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) lst
+
+let stmt_printer lst =  statement_printer (List.map stmt_to_statement lst)
+
+let ty_printer ty = PA.pp_ty Format.std_formatter ty
+
+let alt_ty_printer ty =  match ty with
+  | PA.Ty_bool -> print_string "Bool"
+  | Ty_real -> print_string "Real"
+  | Ty_app (s,[]) -> print_string s
+  | _ -> print_string "other"
+
+(* will tell you if two PA.ty are equal*)
+
+(*I think this is not necessary since we can ue the built in equaity*)
+(* let ty_equal (ty1 : PA.ty) (ty2 : PA.ty) : bool = 
+begin match ty1 with
+  | Ty_bool ->
+      begin match ty2 with
+        | Ty_bool -> true
+        | _ -> false
+      end
+  | Ty_real ->
+      begin match ty2 with
+        | Ty_real -> true
+        | _ -> false
+      end
+  | Ty_app of ty_var * ty list
+  | Ty_arrow of ty list * ty *)

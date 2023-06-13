@@ -2,6 +2,7 @@
 
 module PA = Smtlib_utils.V_2_6.Ast
 open Context
+open R4reduce_rules
 exception UnsupportedQuery of string
 
 
@@ -101,6 +102,7 @@ let rec create_vars (term: PA.term) : PA.term =
 
   (* function that takes in a PA.term and flattens it by adding variables for subterms to t.new_statemets using the function create_vars*)
 and flatten (term: PA.term) : PA.term =
+    (* print_string "Flattening: "; stmt_printer [PA.Stmt_assert term]; print_string "\n"; *)
   match term with
   | True -> True
   | False -> False
@@ -176,37 +178,55 @@ let rec create_general_statement_asserts (keys: string list) =
     end
 
 
+(*We need to turn our datatype declarations into the appropriate decl_fun's,
+   ,otherwise we won't be able to recognize it in the flatten statement step.
+   This is done again in the R$reduce_rules, so it is possible to run just the
+   reduction without flattening if we desire*)
+
+let rec remove_datatype_decl (stmts : PA.stmt list) = 
+  begin match stmts with
+    | stmt :: rest ->
+        begin match stmt with
+          | PA.Stmt_data data -> let reduced_adt_decl_sorts, reduced_adt_decl_funs = (add_adt_list_to_context data) in
+              reduced_adt_decl_sorts @ reduced_adt_decl_funs @ (remove_datatype_decl rest)
+          | _ -> stmt :: (remove_datatype_decl rest)
+        end
+    | _ -> []
+  end
+
 (* Takes in as input a list of statements. Runs flatten on all of them and adds into it the statements
  from new_statements(at the beginning) and general statements (at the end) *)
 let flatten_statements (stmts : PA.stmt list) = 
-  let rec flatten_statements_helper (stmts: PA.stmt list) =
+  let rec flatten_statements_helper (stmts: PA.stmt list) fun_decls asserts =
     begin match stmts with
-      | stmt :: rest ->
+      | stmt :: rest -> 
         begin match stmt with
         (* | Stmt_decl_sort of string * int (* arity *)
         | Stmt_decl of ty fun_decl *)
         | Stmt_fun_def fun_def ->
           (* Ctx.add_new_statement fun_def.fr_decl.fun_name (fun_def.fr_decl.fun_ret) fun_def.fr_body; *)
           Ctx.add_fun_def fun_def.fr_decl.fun_name (fun_def.fr_decl.fun_ret);
-          stmt :: (flatten_statements_helper rest)
+          (flatten_statements_helper rest (fun_decls @ [stmt]) asserts)
         | Stmt_decl fun_decl ->
           Ctx.add_fun_def fun_decl.fun_name fun_decl.fun_ret;
-          stmt :: (flatten_statements_helper rest)
+          (flatten_statements_helper rest (fun_decls @ [stmt]) asserts)
         | Stmt_fun_rec _ -> raise (UnsupportedQuery "We do not support Stmt_fun_rec")
         | Stmt_funs_rec _ -> raise (UnsupportedQuery "We do not support funs_rec_def")
-        | Stmt_assert term -> Stmt_assert (flatten term) :: (flatten_statements_helper rest)
-        | Stmt_check_sat -> (flatten_statements_helper rest)
+        | Stmt_assert term -> (flatten_statements_helper rest fun_decls (asserts @ [PA.Stmt_assert (flatten term)]))
+        | Stmt_check_sat -> (flatten_statements_helper rest fun_decls asserts)
         (* | Stmt_data of ((string * int) * cstor list) list *)
-        | _ -> stmt :: (flatten_statements_helper rest)
+        | _ -> (flatten_statements_helper rest (fun_decls @ [stmt]) asserts)
         end
-      | _ -> []
+      | _ -> fun_decls, asserts
     end
   in
-  let flattened_statements = flatten_statements_helper stmts in
-  (create_new_statements_declares (StrTbl.keys_list Ctx.t.new_statements)) @ 
-    (create_general_statement_declares (StrTbl.keys_list Ctx.t.general_statements)) @
-    flattened_statements @ (create_new_statements_asserts (StrTbl.keys_list Ctx.t.new_statements)) @ 
-    (create_general_statement_asserts (StrTbl.keys_list Ctx.t.general_statements)) @ 
-    [Stmt_check_sat]
+  let stmts = remove_datatype_decl stmts in
+  let flattened_statements_decls, flattened_statement_asserts = flatten_statements_helper stmts [] [] in
+  let new_statement_declares = (create_new_statements_declares (StrTbl.keys_list Ctx.t.new_statements)) in 
+  let general_statement_declares = (create_general_statement_declares (StrTbl.keys_list Ctx.t.general_statements)) in 
+  let new_statement_asserts = (create_new_statements_asserts (StrTbl.keys_list Ctx.t.new_statements)) in 
+  let general_statement_asserts = (create_general_statement_asserts (StrTbl.keys_list Ctx.t.general_statements)) in 
+  flattened_statements_decls @ general_statement_declares @ new_statement_declares @
+   flattened_statement_asserts @  new_statement_asserts @ general_statement_asserts @ [Stmt_check_sat]
     (*TODO: I need a better way to order these statements. Will probably have to use flatten_statements_helper to keep track fo stuff*)
 

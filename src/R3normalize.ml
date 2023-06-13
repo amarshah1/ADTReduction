@@ -26,6 +26,7 @@ let rec normalize (not_parity: bool)  (term : PA.term) =
   | Not t -> (normalize (not not_parity) t)
   | Forall (_, _) -> raise (UnsupportedQuery "We do not support Forall")
   | Exists (_, _) -> raise (UnsupportedQuery "We do not support Exists")
+  | Is_a (name, t) -> PA.App ("is-" ^ name, [t]) (*NOT NORMALIZATION: but rather turning testers to uninterpreted functions*)
   | _ -> negate not_parity term (* catch all for everything else: note we assume that everything is flattened and typechecked*)
 
 let rec normalize_statements stmts =

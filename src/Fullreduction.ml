@@ -21,12 +21,14 @@ let process_smt2 filename =
   (* Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) stmt_list; *)
   
   
-  let reduced_stmt_list = reduce_axioms (reduce_rule_statements (List.map statement_to_stmt stmt_list)) in
+  let reduced_stmt_list = full_reduction (List.map statement_to_stmt stmt_list) in
 
   let () = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) (List.map stmt_to_statement reduced_stmt_list) in
+  reset_ctx();
   ()
   (* print_endline content *)
 
 let () =
   let filename = Sys.argv.(1) in
   process_smt2 filename
+

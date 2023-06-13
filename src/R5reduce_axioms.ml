@@ -40,8 +40,8 @@ let rec get_adt_vars stmts =
 let rec get_tester_axiom_term var_name (cstor_list : PA.cstor list) not_placement = 
   begin match cstor_list with
     | cstor :: rest -> 
-        if (not_placement = 1) then PA.Not (PA.App (("is-" ^ cstor.cstor_name), [PA.Const var_name])) :: (get_tester_axiom_term var_name rest (not_placement - 1))
-        else PA.App (("is-" ^ cstor.cstor_name), [PA.Const var_name]) :: (get_tester_axiom_term var_name rest (not_placement - 1))
+        if (not_placement = 1) then (PA.App (("is-" ^ cstor.cstor_name), [PA.Const var_name])) :: (get_tester_axiom_term var_name rest (not_placement - 1))
+        else PA.Not (PA.App (("is-" ^ cstor.cstor_name), [PA.Const var_name])) :: (get_tester_axiom_term var_name rest (not_placement - 1))
     | _ -> []
 end
 
@@ -80,14 +80,6 @@ let rec generate_tester_axioms keys =
 
 (* Step 3: Use list of vars to implement acyclicality axiom*)
 
-let stmt_printer lst = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) lst
-let ty_printer ty = PA.pp_ty Format.std_formatter ty
-
-let alt_ty_printer ty =  match ty with
-  | PA.Ty_bool -> print_string "Bool"
-  | Ty_real -> print_string "Real"
-  | Ty_app (s,[]) -> print_string s
-  | _ -> print_string "other"
 
 let rec generate_disequalities term (term_ty : PA.ty) parents =
   (* let rec generate_disequalities_helper term (term_ty :PA.ty) selector parents = *)
@@ -154,7 +146,7 @@ let rec generate_acyclicality_axioms keys =
   begin match keys with
     | key :: rest ->
         let values, ty = StrTbl.find Ctx.t.adt_with_variables key in
-        let values_len = List.length values in
+        let values_len = List.length values in (*TODO: change selection depth for co-recursive ADTs*)
         let constructor_list = StrTbl.find Ctx.t.adts key in
         let selector_list = generate_selector_list constructor_list in
         let _ = create_selector_values (StrTbl.keys_list Ctx.t.adts) in
@@ -173,4 +165,18 @@ let reduce_axioms stmts =
   (* let key_value_pairs = Hashtbl.map_list Ctx.t.adt_with_variables in *)
   let tester_axioms = generate_tester_axioms keys in
   let acyclicality_axioms = generate_acyclicality_axioms keys in
-  [PA.Stmt_set_logic "UFLRA"] @ stmts @ tester_axioms @ acyclicality_axioms @ [PA.Stmt_check_sat]
+  [PA.Stmt_set_logic "QF_UF"] @ stmts @ tester_axioms @ acyclicality_axioms @ [PA.Stmt_check_sat]
+
+let full_reduction stmts =
+  let is = inline_statements stmts in
+  (* print_string "inline done \n"; *)
+  let fs = flatten_statements is in 
+  (* print_string "flatten done \n"; *)
+  let ns = normalize_statements fs in 
+  (* print_string "normalize done \n"; *)
+  let rrs = reduce_rule_statements ns in 
+  (* print_string "reduce_rule done \n"; *)
+  let ras = reduce_axioms rrs in 
+  (* print_string "reduce_axioms done \n"; *)
+
+  ras

@@ -6,7 +6,7 @@
 ;(declare-datatypes () ((Tree leaf (node (left Tree) (right Tree)))))
 ;(declare-datatype MyList ((Nil) (Cons (head Int) (tail MyList)) ))
 
-(declare-datatypes ((MyList 0)) (((Nil) (Cons (Head Real) (Tail MyList)))))
+(declare-datatypes ((MyList 0)) (((Nil) (Sil) (Cons (Head Real) (Tail MyList)))))
 
 (declare-const x MyList)
 (declare-const y MyList)

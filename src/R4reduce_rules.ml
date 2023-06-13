@@ -1,8 +1,5 @@
 (* Given a formula in flattened NNF form, we want to perform our reduction*)
 module PA = Smtlib_utils.V_2_6.Ast
-open R1inline
-open R2flatten
-open R3normalize
 open Context
 exception UnsupportedQuery of string
 
@@ -32,16 +29,20 @@ let rec add_cstors adt_ty (cstor_list: PA.cstor list) : PA.stmt list =
   end
 
 
-  (*this function will add an adt list to context, but will also return a list that replaces the adt declaration *)
-let rec add_adt_list_to_context (adt_list: ((string * int) * PA.cstor list) list) : PA.stmt list = 
-  begin match adt_list with
-    | ((s, _), cstor_list) :: rest -> (*TODO add in selectors constructors testers*)
-        Ctx.add_adt s cstor_list; 
-        let adt_decl_sort = [PA.Stmt_decl_sort (s, 0)] in
-        let cstor_statements = add_cstors (PA.Ty_app (s, [])) cstor_list in
-        adt_decl_sort @ cstor_statements @ (add_adt_list_to_context rest)
-    | _ -> []
-end
+  (*this function will add an adt list to context, but will also return a list that replaces the adt declaration *) 
+  
+let rec add_adt_list_to_context (adt_list: ((string * int) * PA.cstor list) list) = 
+  let rec add_adt_list_to_context_helper adt_list sort_decls fun_decls = 
+    begin match adt_list with
+      | ((s, _), cstor_list) :: rest -> 
+          Ctx.add_adt s cstor_list; 
+          let adt_decl_sort = [PA.Stmt_decl_sort (s, 0)] in
+          let cstor_statements = add_cstors (PA.Ty_app (s, [])) cstor_list in
+          (add_adt_list_to_context_helper rest (sort_decls @ adt_decl_sort) (fun_decls @ cstor_statements))
+      | _ -> (sort_decls, fun_decls)
+    end in
+  let sort_decls, fun_decls = add_adt_list_to_context_helper adt_list [] [] in 
+    sort_decls, fun_decls
 
 (*Consolidate this into reduce statements*)
 (* let rec store_adts (statements: PA.stmt list) = 
@@ -126,11 +127,13 @@ let reduce_statements (statements: PA.stmt list) =
     begin match statements with
       | stmt :: rest ->
           begin match stmt with
-          | PA.Stmt_data data -> let reduced_adt_decl = (add_adt_list_to_context data) in
-                              (reduce_statements_helper rest (sort_decl @ reduced_adt_decl) variable_decl asserts)
+          | PA.Stmt_data data -> let reduced_adt_decl_sorts, reduced_adt_decl_funs = (add_adt_list_to_context data) in
+                              (reduce_statements_helper rest (sort_decl @ reduced_adt_decl_sorts @ reduced_adt_decl_funs) variable_decl asserts)
           | Stmt_assert t -> reduce_statements_helper rest sort_decl variable_decl (asserts @ [PA.Stmt_assert (reduce_asserts t)])
           | Stmt_check_sat -> reduce_statements_helper rest sort_decl variable_decl (asserts)
           | Stmt_set_logic _ -> reduce_statements_helper rest sort_decl variable_decl (asserts)
+          | Stmt_set_info _ -> reduce_statements_helper rest sort_decl variable_decl (asserts)
+          | Stmt_exit -> reduce_statements_helper rest sort_decl variable_decl (asserts)
           | _ -> reduce_statements_helper rest (sort_decl @ [stmt]) variable_decl (asserts)
           end
       | _ -> sort_decl, variable_decl, asserts
