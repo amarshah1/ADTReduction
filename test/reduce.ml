@@ -1,8 +1,8 @@
 open OUnit2
 open R1inline
-open R2flatten
-open R3normalize
-open R4reduce_rules
+open R3flatten
+open R4normalize
+open R5reduce_rules
 open Context
 
 module PA = Smtlib_utils.V_2_6.Ast

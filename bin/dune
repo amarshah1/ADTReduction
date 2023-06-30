@@ -1,5 +1,7 @@
 (executable
  (public_name reduce)
  (name reduce)
- (libraries smtlib-utils R1inline R2flatten R3normalize R4reduce_rules R5reduce_axioms Typecheck Context)
- (flags (:standard -warn-error -A)))
+ (libraries smtlib-utils R1inline R2rewrite R3flatten R4normalize R5reduce_rules R6reduce_axioms Typecheck Context)
+ (flags (:standard -warn-error -A))
+ (preprocess (pps landmarks-ppx --auto))
+)

@@ -23,6 +23,8 @@ Publications: "An Abstract Decision Procedure for Satisfiability in the Theory o
 
 (assert (and (and (and (and (not ((_ is zero) x1)) ((_ is succ) (data x3))) (not (= (data (leaf (succ (pred zero)))) (pred (pred (pred zero)))))) (is-leaf (car (cdr x2)))) (not (= x3 (leaf (pred (data (leaf (succ (data x3))))))))))
 (check-sat)
+;(get-model)
+
 (exit)
 
 

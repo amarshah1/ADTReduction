@@ -23,6 +23,7 @@ Publications: "An Abstract Decision Procedure for Satisfiability in the Theory o
 
 (assert (and (= (children (car x2)) x2) (= (data (node (children (node null)))) zero)))
 (check-sat)
+(get-model)
 (exit)
 
 

@@ -2,46 +2,61 @@
   (name Context)
   (flags :standard -warn-error -A)
   (libraries smtlib-utils containers)
-  (modules Context))
+  (modules Context)
+  (preprocess (pps landmarks-ppx --auto)))
 
 (library
  (name R1inline)
  (flags :standard -warn-error -A)
  (libraries smtlib-utils Context)
- (modules R1inline))
+ (modules R1inline)
+ (preprocess (pps landmarks-ppx --auto)))
 
 (library
- (name R3normalize)
+ (name R4normalize)
  (flags :standard -warn-error -A)
- (libraries smtlib-utils R1inline R2flatten Context)
- (modules R3normalize))
+ (libraries smtlib-utils R1inline R3flatten Context)
+ (modules R4normalize)
+ (preprocess (pps landmarks-ppx --auto)))
 
 (library
- (name R4reduce_rules)
+ (name R5reduce_rules)
  (flags :standard -warn-error -A)
  (libraries smtlib-utils Context)
- (modules R4reduce_rules))
+ (modules R5reduce_rules)
+ (preprocess (pps landmarks-ppx --auto)))
+
+(library
+ (name R2rewrite)
+ (flags :standard -warn-error -A)
+ (libraries smtlib-utils R5reduce_rules Context)
+ (modules R2rewrite)
+ (preprocess (pps landmarks-ppx --auto)))
 
  (library
- (name R2flatten)
+ (name R3flatten)
  (flags :standard -warn-error -A)
- (libraries smtlib-utils containers R4reduce_rules Context)
- (modules R2flatten))
+ (libraries smtlib-utils containers R5reduce_rules Context)
+ (modules R3flatten)
+ (preprocess (pps landmarks-ppx --auto)))
 
  (library
- (name R5reduce_axioms)
+ (name R6reduce_axioms)
  (flags :standard -warn-error -A)
- (libraries smtlib-utils R1inline R2flatten R3normalize R4reduce_rules Context)
- (modules R5reduce_axioms))
+ (libraries smtlib-utils R1inline R2rewrite R3flatten R4normalize R5reduce_rules Context)
+ (modules R6reduce_axioms)
+ (preprocess (pps landmarks-ppx --auto)))
 
  (library
  (name Typecheck)
  (flags :standard -warn-error -A)
- (libraries smtlib-utils R1inline R2flatten R3normalize)
- (modules Typecheck))
+ (libraries smtlib-utils R1inline R3flatten R4normalize)
+ (modules Typecheck)
+ (preprocess (pps landmarks-ppx --auto)))
 
  (executable
  (name Fullreduction)
  (flags :standard -warn-error -A)
- (libraries smtlib-utils R1inline R2flatten R3normalize R4reduce_rules R5reduce_axioms Context)
- (modules Fullreduction))
+ (libraries smtlib-utils R1inline R3flatten R4normalize R5reduce_rules R6reduce_axioms Context)
+ (modules Fullreduction)
+ (preprocess (pps landmarks-ppx --auto)))

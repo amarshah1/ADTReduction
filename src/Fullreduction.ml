@@ -1,11 +1,5 @@
-open Smtlib_utils.V_2_6
-open R1inline
-open R2flatten
-open R3normalize
-open R4reduce_rules
-open R5reduce_axioms
+open R6reduce_axioms
 open Context
-exception UnsupportedQuery of string
 
 let process_smt2 filename =
   (* let in_channel = open_in filename in
@@ -23,7 +17,7 @@ let process_smt2 filename =
   
   let reduced_stmt_list = full_reduction (List.map statement_to_stmt stmt_list) in
 
-  let () = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) (List.map stmt_to_statement reduced_stmt_list) in
+  let () = Format.printf "@[<hv>%a@]@." (PA.pp_list PA.pp_stmt) (stmt_to_statements reduced_stmt_list) in
   reset_ctx();
   ()
   (* print_endline content *)

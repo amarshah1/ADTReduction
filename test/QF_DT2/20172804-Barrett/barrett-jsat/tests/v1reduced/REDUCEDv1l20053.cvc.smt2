@@ -9,8 +9,8 @@
 (declare-fun is-zero (nat) Bool)
 (declare-fun cons (tree list) list)
 (declare-fun is-cons (list) Bool)
-(declare-fun car (list) tree)
 (declare-fun cdr (list) list)
+(declare-fun car (list) tree)
 (declare-fun null () list)
 (declare-fun is-null (list) Bool)
 (declare-fun node (list) tree)
@@ -22,2521 +22,548 @@
 (declare-fun x1 () nat)
 (declare-fun x2 () list)
 (declare-fun x3 () tree)
-(declare-fun contrived_variable6 () tree)
-(declare-fun contrived_variable1 () nat)
-(declare-fun contrived_variable0 () nat)
-(declare-fun contrived_variable4 () nat)
-(declare-fun contrived_variable3 () nat)
-(declare-fun contrived_variable5 () nat)
-(declare-fun contrived_variable2 () tree)
-(declare-fun contrived_variable7 () nat)
-(declare-fun contrived_variable8 () nat)
-(declare-fun contrived_variable9 () nat)
-(assert (is-zero zero))
-(assert (is-null null))
+(assert true)
+(assert true)
+(assert (and (not (is-cons x2)) (not (= zero (succ x1)))))
 (assert
- (and (not (is-cons x2)) (not (= contrived_variable5 contrived_variable0))))
-(assert
- (and (= (leaf zero) contrived_variable6) (is-leaf contrived_variable6)
-  (= (data contrived_variable6) zero)))
-(assert
- (and (= (data contrived_variable2) contrived_variable1)
-  (= (leaf contrived_variable7) contrived_variable2)
-  (= (data contrived_variable2) contrived_variable7)))
-(assert
- (and (= (succ contrived_variable1) contrived_variable0)
-  (is-succ contrived_variable0)
-  (= (pred contrived_variable0) contrived_variable1)))
-(assert
- (and (= (succ x1) contrived_variable4) (is-succ contrived_variable4)
-  (= (pred contrived_variable4) x1)))
-(assert
- (and (= (pred contrived_variable4) contrived_variable3)
-  (= (succ contrived_variable8) contrived_variable4)
-  (= (pred contrived_variable4) contrived_variable8)))
-(assert
- (and (= (data contrived_variable6) contrived_variable5)
-  (= (leaf contrived_variable9) contrived_variable6)
-  (= (data contrived_variable6) contrived_variable9)))
-(assert
- (and (= (leaf contrived_variable3) contrived_variable2)
-  (is-leaf contrived_variable2)
-  (= (data contrived_variable2) contrived_variable3)))
-(assert
- (or (and (is-cons x2) (not (is-null x2)))
-  (and (not (is-cons x2)) (is-null x2))))
+ (or (and (not (is-cons x2)) (is-null x2))
+  (and (is-cons x2) (not (is-null x2)))))
 (assert (=> (is-null x2) (= x2 null)))
 (assert
- (or (and (is-cons null) (not (is-null null)))
-  (and (not (is-cons null)) (is-null null))))
+ (or (and (not (is-cons null)) (is-null null))
+  (and (is-cons null) (not (is-null null)))))
 (assert (=> (is-null null) (= null null)))
 (assert
- (or (and (is-node contrived_variable2) (not (is-leaf contrived_variable2)))
-  (and (not (is-node contrived_variable2)) (is-leaf contrived_variable2))))
+ (or (and (not (is-node x3)) (is-leaf x3))
+  (and (is-node x3) (not (is-leaf x3)))))
 (assert
- (or (and (is-node contrived_variable6) (not (is-leaf contrived_variable6)))
-  (and (not (is-node contrived_variable6)) (is-leaf contrived_variable6))))
-(assert
- (or (and (is-node x3) (not (is-leaf x3)))
-  (and (not (is-node x3)) (is-leaf x3))))
-(assert
- (or (and (is-succ contrived_variable9) (not (is-zero contrived_variable9)))
-  (and (not (is-succ contrived_variable9)) (is-zero contrived_variable9))))
-(assert (=> (is-zero contrived_variable9) (= contrived_variable9 zero)))
-(assert
- (or (and (is-succ contrived_variable8) (not (is-zero contrived_variable8)))
-  (and (not (is-succ contrived_variable8)) (is-zero contrived_variable8))))
-(assert (=> (is-zero contrived_variable8) (= contrived_variable8 zero)))
-(assert
- (or (and (is-succ contrived_variable7) (not (is-zero contrived_variable7)))
-  (and (not (is-succ contrived_variable7)) (is-zero contrived_variable7))))
-(assert (=> (is-zero contrived_variable7) (= contrived_variable7 zero)))
-(assert
- (or (and (is-succ contrived_variable5) (not (is-zero contrived_variable5)))
-  (and (not (is-succ contrived_variable5)) (is-zero contrived_variable5))))
-(assert (=> (is-zero contrived_variable5) (= contrived_variable5 zero)))
-(assert
- (or (and (is-succ contrived_variable3) (not (is-zero contrived_variable3)))
-  (and (not (is-succ contrived_variable3)) (is-zero contrived_variable3))))
-(assert (=> (is-zero contrived_variable3) (= contrived_variable3 zero)))
-(assert
- (or (and (is-succ contrived_variable4) (not (is-zero contrived_variable4)))
-  (and (not (is-succ contrived_variable4)) (is-zero contrived_variable4))))
-(assert (=> (is-zero contrived_variable4) (= contrived_variable4 zero)))
-(assert
- (or (and (is-succ contrived_variable0) (not (is-zero contrived_variable0)))
-  (and (not (is-succ contrived_variable0)) (is-zero contrived_variable0))))
-(assert (=> (is-zero contrived_variable0) (= contrived_variable0 zero)))
-(assert
- (or (and (is-succ contrived_variable1) (not (is-zero contrived_variable1)))
-  (and (not (is-succ contrived_variable1)) (is-zero contrived_variable1))))
-(assert (=> (is-zero contrived_variable1) (= contrived_variable1 zero)))
-(assert
- (or (and (is-succ x1) (not (is-zero x1)))
-  (and (not (is-succ x1)) (is-zero x1))))
+ (or (and (not (is-succ x1)) (is-zero x1))
+  (and (is-succ x1) (not (is-zero x1)))))
 (assert (=> (is-zero x1) (= x1 zero)))
 (assert
- (or (and (is-succ zero) (not (is-zero zero)))
-  (and (not (is-succ zero)) (is-zero zero))))
+ (or (and (not (is-succ zero)) (is-zero zero))
+  (and (is-succ zero) (not (is-zero zero)))))
 (assert (=> (is-zero zero) (= zero zero)))
-(assert (not (= (children (car x2)) x2)))
-(assert (not (= (cdr x2) x2)))
-(assert (not (= (cdr (cdr x2)) (cdr x2))))
-(assert (not (= (cdr (cdr x2)) x2)))
-(assert (not (= (children (car null)) null)))
-(assert (not (= (cdr null) null)))
-(assert (not (= (cdr (cdr null)) (cdr null))))
-(assert (not (= (cdr (cdr null)) null)))
-(assert (not (= (car (children contrived_variable2)) contrived_variable2)))
+(assert (=> (and (is-cons x2)) (not (= (cdr x2) x2))))
+(assert (=> (and (is-cons (cdr x2))) (not (= (cdr (cdr x2)) (cdr x2)))))
 (assert
- (not
-  (= (children (car (children contrived_variable2)))
-   (children contrived_variable2))))
+ (=> (and (is-cons x2) (is-cons (cdr x2))) (not (= (cdr (cdr x2)) x2))))
 (assert
- (not (= (cdr (children contrived_variable2)) (children contrived_variable2))))
+ (=> (and (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) (cdr (cdr x2))))))
 (assert
- (not (= (car (cdr (children contrived_variable2))) contrived_variable2)))
+ (=> (and (is-cons (cdr x2)) (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) (cdr x2)))))
 (assert
- (not
-  (= (cdr (cdr (children contrived_variable2)))
-   (cdr (children contrived_variable2)))))
+ (=> (and (is-cons x2) (is-cons (cdr x2)) (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) x2))))
 (assert
- (not
-  (= (cdr (cdr (children contrived_variable2)))
-   (children contrived_variable2))))
+ (=> (and (is-cons (cdr (cdr (cdr x2)))))
+  (not (= (cdr (cdr (cdr (cdr x2)))) (cdr (cdr (cdr x2)))))))
 (assert
- (not (= (pred (data contrived_variable2)) (data contrived_variable2))))
+ (=> (and (is-cons (cdr (cdr x2))) (is-cons (cdr (cdr (cdr x2)))))
+  (not (= (cdr (cdr (cdr (cdr x2)))) (cdr (cdr x2))))))
 (assert
- (not
-  (= (pred (pred (data contrived_variable2)))
-   (pred (data contrived_variable2)))))
+ (=>
+  (and (is-cons (cdr x2)) (is-cons (cdr (cdr x2)))
+   (is-cons (cdr (cdr (cdr x2)))))
+  (not (= (cdr (cdr (cdr (cdr x2)))) (cdr x2)))))
 (assert
- (not (= (pred (pred (data contrived_variable2))) (data contrived_variable2))))
-(assert (not (= (car (children contrived_variable6)) contrived_variable6)))
+ (=>
+  (and (is-cons x2) (is-cons (cdr x2)) (is-cons (cdr (cdr x2)))
+   (is-cons (cdr (cdr (cdr x2)))))
+  (not (= (cdr (cdr (cdr (cdr x2)))) x2))))
 (assert
- (not
-  (= (children (car (children contrived_variable6)))
-   (children contrived_variable6))))
+ (=> (and (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) (cdr (cdr x2))))))
 (assert
- (not (= (cdr (children contrived_variable6)) (children contrived_variable6))))
+ (=> (and (is-cons (cdr x2)) (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) (cdr x2)))))
 (assert
- (not (= (car (cdr (children contrived_variable6))) contrived_variable6)))
+ (=> (and (is-cons x2) (is-cons (cdr x2)) (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) x2))))
 (assert
- (not
-  (= (cdr (cdr (children contrived_variable6)))
-   (cdr (children contrived_variable6)))))
+ (=> (and (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) (cdr (cdr x2))))))
 (assert
- (not
-  (= (cdr (cdr (children contrived_variable6)))
-   (children contrived_variable6))))
+ (=> (and (is-cons (cdr x2)) (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) (cdr x2)))))
 (assert
- (not (= (pred (data contrived_variable6)) (data contrived_variable6))))
+ (=> (and (is-cons x2) (is-cons (cdr x2)) (is-cons (cdr (cdr x2))))
+  (not (= (cdr (cdr (cdr x2))) x2))))
+(assert (=> (and (is-cons (cdr x2))) (not (= (cdr (cdr x2)) (cdr x2)))))
 (assert
- (not
-  (= (pred (pred (data contrived_variable6)))
-   (pred (data contrived_variable6)))))
+ (=> (and (is-cons x2) (is-cons (cdr x2))) (not (= (cdr (cdr x2)) x2))))
 (assert
- (not (= (pred (pred (data contrived_variable6))) (data contrived_variable6))))
-(assert (not (= (car (children x3)) x3)))
-(assert (not (= (children (car (children x3))) (children x3))))
-(assert (not (= (cdr (children x3)) (children x3))))
-(assert (not (= (car (cdr (children x3))) x3)))
-(assert (not (= (cdr (cdr (children x3))) (cdr (children x3)))))
-(assert (not (= (cdr (cdr (children x3))) (children x3))))
-(assert (not (= (pred (data x3)) (data x3))))
-(assert (not (= (pred (pred (data x3))) (pred (data x3)))))
-(assert (not (= (pred (pred (data x3))) (data x3))))
-(assert (not (= (pred contrived_variable9) contrived_variable9)))
+ (=> (and (is-cons (cdr (cdr x2))) (is-node (car (cdr (cdr x2)))))
+  (not (= (children (car (cdr (cdr x2)))) (cdr (cdr x2))))))
 (assert
- (not (= (pred (pred contrived_variable9)) (pred contrived_variable9))))
-(assert (not (= (pred (pred contrived_variable9)) contrived_variable9)))
+ (=>
+  (and (is-cons (cdr x2)) (is-cons (cdr (cdr x2)))
+   (is-node (car (cdr (cdr x2)))))
+  (not (= (children (car (cdr (cdr x2)))) (cdr x2)))))
 (assert
- (not
-  (= (pred (pred (pred contrived_variable9)))
-   (pred (pred contrived_variable9)))))
+ (=>
+  (and (is-cons x2) (is-cons (cdr x2)) (is-cons (cdr (cdr x2)))
+   (is-node (car (cdr (cdr x2)))))
+  (not (= (children (car (cdr (cdr x2)))) x2))))
+(assert (=> (and (is-cons (cdr x2))) (not (= (cdr (cdr x2)) (cdr x2)))))
 (assert
- (not (= (pred (pred (pred contrived_variable9))) (pred contrived_variable9))))
+ (=> (and (is-cons x2) (is-cons (cdr x2))) (not (= (cdr (cdr x2)) x2))))
+(assert (=> (and (is-cons x2)) (not (= (cdr x2) x2))))
 (assert
- (not (= (pred (pred (pred contrived_variable9))) contrived_variable9)))
+ (=> (and (is-succ (data (car (cdr x2)))))
+  (not (= (pred (data (car (cdr x2)))) (data (car (cdr x2)))))))
 (assert
- (not
-  (= (pred (pred (pred (pred contrived_variable9))))
-   (pred (pred (pred contrived_variable9))))))
+ (=> (and (is-cons (cdr x2)) (is-node (car (cdr x2))))
+  (not (= (children (car (cdr x2))) (cdr x2)))))
 (assert
- (not
-  (= (pred (pred (pred (pred contrived_variable9))))
-   (pred (pred contrived_variable9)))))
+ (=> (and (is-cons x2) (is-cons (cdr x2)) (is-node (car (cdr x2))))
+  (not (= (children (car (cdr x2))) x2))))
 (assert
- (not
-  (= (pred (pred (pred (pred contrived_variable9))))
-   (pred contrived_variable9))))
+ (=> (and (is-cons (children (car (cdr x2)))))
+  (not (= (cdr (children (car (cdr x2)))) (children (car (cdr x2)))))))
 (assert
- (not (= (pred (pred (pred (pred contrived_variable9)))) contrived_variable9)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable9)))))
-   (pred (pred (pred (pred contrived_variable9)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable9)))))
-   (pred (pred (pred contrived_variable9))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable9)))))
-   (pred (pred contrived_variable9)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable9)))))
-   (pred contrived_variable9))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable9)))))
-   contrived_variable9)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable9))))))
-   (pred (pred (pred (pred (pred contrived_variable9))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable9))))))
-   (pred (pred (pred (pred contrived_variable9)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable9))))))
-   (pred (pred (pred contrived_variable9))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable9))))))
-   (pred (pred contrived_variable9)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable9))))))
-   (pred contrived_variable9))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable9))))))
-   contrived_variable9)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable9)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   (pred (pred (pred (pred (pred contrived_variable9))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   (pred (pred (pred (pred contrived_variable9)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   (pred (pred (pred contrived_variable9))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   (pred (pred contrived_variable9)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   (pred contrived_variable9))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))
-   contrived_variable9)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable9)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred (pred (pred (pred (pred contrived_variable9))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred (pred (pred (pred contrived_variable9)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred (pred (pred contrived_variable9))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred (pred contrived_variable9)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   (pred contrived_variable9))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))
-   contrived_variable9)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable9)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred (pred (pred (pred contrived_variable9))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred (pred (pred contrived_variable9)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred (pred contrived_variable9))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred (pred contrived_variable9)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   (pred contrived_variable9))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9)))))))))
-   contrived_variable9)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable9)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable9))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable9)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred (pred (pred contrived_variable9))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred (pred contrived_variable9)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred (pred contrived_variable9))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred (pred contrived_variable9)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   (pred contrived_variable9))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable9))))))))))
-   contrived_variable9)))
-(assert (not (= (pred contrived_variable8) contrived_variable8)))
-(assert
- (not (= (pred (pred contrived_variable8)) (pred contrived_variable8))))
-(assert (not (= (pred (pred contrived_variable8)) contrived_variable8)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable8)))
-   (pred (pred contrived_variable8)))))
-(assert
- (not (= (pred (pred (pred contrived_variable8))) (pred contrived_variable8))))
-(assert
- (not (= (pred (pred (pred contrived_variable8))) contrived_variable8)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable8))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable8))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable8))))
-   (pred contrived_variable8))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable8)))) contrived_variable8)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable8)))))
-   (pred (pred (pred (pred contrived_variable8)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable8)))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable8)))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable8)))))
-   (pred contrived_variable8))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable8)))))
-   contrived_variable8)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable8))))))
-   (pred (pred (pred (pred (pred contrived_variable8))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable8))))))
-   (pred (pred (pred (pred contrived_variable8)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable8))))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable8))))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable8))))))
-   (pred contrived_variable8))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable8))))))
-   contrived_variable8)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable8)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   (pred (pred (pred (pred (pred contrived_variable8))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   (pred (pred (pred (pred contrived_variable8)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   (pred contrived_variable8))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))
-   contrived_variable8)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable8)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred (pred (pred (pred (pred contrived_variable8))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred (pred (pred (pred contrived_variable8)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   (pred contrived_variable8))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))
-   contrived_variable8)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable8)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred (pred (pred (pred contrived_variable8))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred (pred (pred contrived_variable8)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   (pred contrived_variable8))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8)))))))))
-   contrived_variable8)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable8)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable8))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable8)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred (pred (pred contrived_variable8))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred (pred contrived_variable8)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred (pred contrived_variable8))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred (pred contrived_variable8)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   (pred contrived_variable8))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable8))))))))))
-   contrived_variable8)))
-(assert (not (= (pred contrived_variable7) contrived_variable7)))
-(assert
- (not (= (pred (pred contrived_variable7)) (pred contrived_variable7))))
-(assert (not (= (pred (pred contrived_variable7)) contrived_variable7)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable7)))
-   (pred (pred contrived_variable7)))))
-(assert
- (not (= (pred (pred (pred contrived_variable7))) (pred contrived_variable7))))
-(assert
- (not (= (pred (pred (pred contrived_variable7))) contrived_variable7)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable7))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable7))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable7))))
-   (pred contrived_variable7))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable7)))) contrived_variable7)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable7)))))
-   (pred (pred (pred (pred contrived_variable7)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable7)))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable7)))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable7)))))
-   (pred contrived_variable7))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable7)))))
-   contrived_variable7)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable7))))))
-   (pred (pred (pred (pred (pred contrived_variable7))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable7))))))
-   (pred (pred (pred (pred contrived_variable7)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable7))))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable7))))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable7))))))
-   (pred contrived_variable7))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable7))))))
-   contrived_variable7)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable7)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   (pred (pred (pred (pred (pred contrived_variable7))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   (pred (pred (pred (pred contrived_variable7)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   (pred contrived_variable7))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))
-   contrived_variable7)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable7)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred (pred (pred (pred (pred contrived_variable7))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred (pred (pred (pred contrived_variable7)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   (pred contrived_variable7))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))
-   contrived_variable7)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable7)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred (pred (pred (pred contrived_variable7))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred (pred (pred contrived_variable7)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   (pred contrived_variable7))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7)))))))))
-   contrived_variable7)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable7)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable7))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable7)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred (pred (pred contrived_variable7))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred (pred contrived_variable7)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred (pred contrived_variable7))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred (pred contrived_variable7)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   (pred contrived_variable7))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable7))))))))))
-   contrived_variable7)))
-(assert (not (= (pred contrived_variable5) contrived_variable5)))
-(assert
- (not (= (pred (pred contrived_variable5)) (pred contrived_variable5))))
-(assert (not (= (pred (pred contrived_variable5)) contrived_variable5)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable5)))
-   (pred (pred contrived_variable5)))))
-(assert
- (not (= (pred (pred (pred contrived_variable5))) (pred contrived_variable5))))
-(assert
- (not (= (pred (pred (pred contrived_variable5))) contrived_variable5)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable5))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable5))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable5))))
-   (pred contrived_variable5))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable5)))) contrived_variable5)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable5)))))
-   (pred (pred (pred (pred contrived_variable5)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable5)))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable5)))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable5)))))
-   (pred contrived_variable5))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable5)))))
-   contrived_variable5)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable5))))))
-   (pred (pred (pred (pred (pred contrived_variable5))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable5))))))
-   (pred (pred (pred (pred contrived_variable5)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable5))))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable5))))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable5))))))
-   (pred contrived_variable5))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable5))))))
-   contrived_variable5)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable5)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   (pred (pred (pred (pred (pred contrived_variable5))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   (pred (pred (pred (pred contrived_variable5)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   (pred contrived_variable5))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))
-   contrived_variable5)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable5)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred (pred (pred (pred (pred contrived_variable5))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred (pred (pred (pred contrived_variable5)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   (pred contrived_variable5))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))
-   contrived_variable5)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable5)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred (pred (pred (pred contrived_variable5))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred (pred (pred contrived_variable5)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   (pred contrived_variable5))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5)))))))))
-   contrived_variable5)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable5)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable5))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable5)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred (pred (pred contrived_variable5))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred (pred contrived_variable5)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred (pred contrived_variable5))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred (pred contrived_variable5)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   (pred contrived_variable5))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable5))))))))))
-   contrived_variable5)))
-(assert (not (= (pred contrived_variable3) contrived_variable3)))
-(assert
- (not (= (pred (pred contrived_variable3)) (pred contrived_variable3))))
-(assert (not (= (pred (pred contrived_variable3)) contrived_variable3)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable3)))
-   (pred (pred contrived_variable3)))))
-(assert
- (not (= (pred (pred (pred contrived_variable3))) (pred contrived_variable3))))
-(assert
- (not (= (pred (pred (pred contrived_variable3))) contrived_variable3)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable3))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable3))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable3))))
-   (pred contrived_variable3))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable3)))) contrived_variable3)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable3)))))
-   (pred (pred (pred (pred contrived_variable3)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable3)))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable3)))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable3)))))
-   (pred contrived_variable3))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable3)))))
-   contrived_variable3)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable3))))))
-   (pred (pred (pred (pred (pred contrived_variable3))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable3))))))
-   (pred (pred (pred (pred contrived_variable3)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable3))))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable3))))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable3))))))
-   (pred contrived_variable3))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable3))))))
-   contrived_variable3)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable3)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   (pred (pred (pred (pred (pred contrived_variable3))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   (pred (pred (pred (pred contrived_variable3)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   (pred contrived_variable3))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))
-   contrived_variable3)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable3)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred (pred (pred (pred (pred contrived_variable3))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred (pred (pred (pred contrived_variable3)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   (pred contrived_variable3))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))
-   contrived_variable3)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable3)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred (pred (pred (pred contrived_variable3))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred (pred (pred contrived_variable3)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   (pred contrived_variable3))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3)))))))))
-   contrived_variable3)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable3)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable3))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable3)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred (pred (pred contrived_variable3))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred (pred contrived_variable3)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred (pred contrived_variable3))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred (pred contrived_variable3)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   (pred contrived_variable3))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable3))))))))))
-   contrived_variable3)))
-(assert (not (= (pred contrived_variable4) contrived_variable4)))
-(assert
- (not (= (pred (pred contrived_variable4)) (pred contrived_variable4))))
-(assert (not (= (pred (pred contrived_variable4)) contrived_variable4)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable4)))
-   (pred (pred contrived_variable4)))))
-(assert
- (not (= (pred (pred (pred contrived_variable4))) (pred contrived_variable4))))
-(assert
- (not (= (pred (pred (pred contrived_variable4))) contrived_variable4)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable4))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable4))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable4))))
-   (pred contrived_variable4))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable4)))) contrived_variable4)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable4)))))
-   (pred (pred (pred (pred contrived_variable4)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable4)))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable4)))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable4)))))
-   (pred contrived_variable4))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable4)))))
-   contrived_variable4)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable4))))))
-   (pred (pred (pred (pred (pred contrived_variable4))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable4))))))
-   (pred (pred (pred (pred contrived_variable4)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable4))))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable4))))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable4))))))
-   (pred contrived_variable4))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable4))))))
-   contrived_variable4)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable4)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   (pred (pred (pred (pred (pred contrived_variable4))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   (pred (pred (pred (pred contrived_variable4)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   (pred contrived_variable4))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))
-   contrived_variable4)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable4)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred (pred (pred (pred (pred contrived_variable4))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred (pred (pred (pred contrived_variable4)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   (pred contrived_variable4))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))
-   contrived_variable4)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable4)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred (pred (pred (pred contrived_variable4))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred (pred (pred contrived_variable4)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   (pred contrived_variable4))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4)))))))))
-   contrived_variable4)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable4)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable4))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable4)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred (pred (pred contrived_variable4))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred (pred contrived_variable4)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred (pred contrived_variable4))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred (pred contrived_variable4)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   (pred contrived_variable4))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable4))))))))))
-   contrived_variable4)))
-(assert (not (= (pred contrived_variable0) contrived_variable0)))
-(assert
- (not (= (pred (pred contrived_variable0)) (pred contrived_variable0))))
-(assert (not (= (pred (pred contrived_variable0)) contrived_variable0)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable0)))
-   (pred (pred contrived_variable0)))))
-(assert
- (not (= (pred (pred (pred contrived_variable0))) (pred contrived_variable0))))
-(assert
- (not (= (pred (pred (pred contrived_variable0))) contrived_variable0)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable0))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable0))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable0))))
-   (pred contrived_variable0))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable0)))) contrived_variable0)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable0)))))
-   (pred (pred (pred (pred contrived_variable0)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable0)))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable0)))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable0)))))
-   (pred contrived_variable0))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable0)))))
-   contrived_variable0)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable0))))))
-   (pred (pred (pred (pred (pred contrived_variable0))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable0))))))
-   (pred (pred (pred (pred contrived_variable0)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable0))))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable0))))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable0))))))
-   (pred contrived_variable0))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable0))))))
-   contrived_variable0)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable0)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   (pred (pred (pred (pred (pred contrived_variable0))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   (pred (pred (pred (pred contrived_variable0)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   (pred contrived_variable0))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))
-   contrived_variable0)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable0)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred (pred (pred (pred (pred contrived_variable0))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred (pred (pred (pred contrived_variable0)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   (pred contrived_variable0))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))
-   contrived_variable0)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable0)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred (pred (pred (pred contrived_variable0))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred (pred (pred contrived_variable0)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   (pred contrived_variable0))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0)))))))))
-   contrived_variable0)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable0)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable0))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable0)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred (pred (pred contrived_variable0))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred (pred contrived_variable0)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred (pred contrived_variable0))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred (pred contrived_variable0)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   (pred contrived_variable0))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable0))))))))))
-   contrived_variable0)))
-(assert (not (= (pred contrived_variable1) contrived_variable1)))
-(assert
- (not (= (pred (pred contrived_variable1)) (pred contrived_variable1))))
-(assert (not (= (pred (pred contrived_variable1)) contrived_variable1)))
-(assert
- (not
-  (= (pred (pred (pred contrived_variable1)))
-   (pred (pred contrived_variable1)))))
-(assert
- (not (= (pred (pred (pred contrived_variable1))) (pred contrived_variable1))))
-(assert
- (not (= (pred (pred (pred contrived_variable1))) contrived_variable1)))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable1))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable1))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred contrived_variable1))))
-   (pred contrived_variable1))))
-(assert
- (not (= (pred (pred (pred (pred contrived_variable1)))) contrived_variable1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable1)))))
-   (pred (pred (pred (pred contrived_variable1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable1)))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable1)))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable1)))))
-   (pred contrived_variable1))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred contrived_variable1)))))
-   contrived_variable1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable1))))))
-   (pred (pred (pred (pred (pred contrived_variable1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable1))))))
-   (pred (pred (pred (pred contrived_variable1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable1))))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable1))))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable1))))))
-   (pred contrived_variable1))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred contrived_variable1))))))
-   contrived_variable1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable1)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   (pred (pred (pred (pred (pred contrived_variable1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   (pred (pred (pred (pred contrived_variable1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   (pred contrived_variable1))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))
-   contrived_variable1)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable1)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred (pred (pred (pred (pred contrived_variable1))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred (pred (pred (pred contrived_variable1)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   (pred contrived_variable1))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))
-   contrived_variable1)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable1)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred (pred (pred (pred contrived_variable1))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred (pred (pred contrived_variable1)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   (pred contrived_variable1))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1)))))))))
-   contrived_variable1)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred contrived_variable1)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred (pred (pred (pred (pred contrived_variable1))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred (pred (pred (pred contrived_variable1)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred (pred (pred contrived_variable1))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred (pred contrived_variable1)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred (pred contrived_variable1))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred (pred contrived_variable1)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   (pred contrived_variable1))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred
-    contrived_variable1))))))))))
-   contrived_variable1)))
-(assert (not (= (pred x1) x1)))
-(assert (not (= (pred (pred x1)) (pred x1))))
-(assert (not (= (pred (pred x1)) x1)))
-(assert (not (= (pred (pred (pred x1))) (pred (pred x1)))))
-(assert (not (= (pred (pred (pred x1))) (pred x1))))
-(assert (not (= (pred (pred (pred x1))) x1)))
-(assert (not (= (pred (pred (pred (pred x1)))) (pred (pred (pred x1))))))
-(assert (not (= (pred (pred (pred (pred x1)))) (pred (pred x1)))))
-(assert (not (= (pred (pred (pred (pred x1)))) (pred x1))))
-(assert (not (= (pred (pred (pred (pred x1)))) x1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred x1))))) (pred (pred (pred (pred x1)))))))
-(assert
- (not (= (pred (pred (pred (pred (pred x1))))) (pred (pred (pred x1))))))
-(assert (not (= (pred (pred (pred (pred (pred x1))))) (pred (pred x1)))))
-(assert (not (= (pred (pred (pred (pred (pred x1))))) (pred x1))))
-(assert (not (= (pred (pred (pred (pred (pred x1))))) x1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred x1))))))
-   (pred (pred (pred (pred (pred x1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred x1))))))
-   (pred (pred (pred (pred x1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred x1)))))) (pred (pred (pred x1))))))
-(assert
- (not (= (pred (pred (pred (pred (pred (pred x1)))))) (pred (pred x1)))))
-(assert (not (= (pred (pred (pred (pred (pred (pred x1)))))) (pred x1))))
-(assert (not (= (pred (pred (pred (pred (pred (pred x1)))))) x1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred x1)))))))
-   (pred (pred (pred (pred (pred (pred x1)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred x1)))))))
-   (pred (pred (pred (pred (pred x1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred x1)))))))
-   (pred (pred (pred (pred x1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred x1)))))))
-   (pred (pred (pred x1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred x1))))))) (pred (pred x1)))))
-(assert
- (not (= (pred (pred (pred (pred (pred (pred (pred x1))))))) (pred x1))))
-(assert (not (= (pred (pred (pred (pred (pred (pred (pred x1))))))) x1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))
-   (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))
-   (pred (pred (pred (pred (pred (pred x1)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))
-   (pred (pred (pred (pred (pred x1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))
-   (pred (pred (pred (pred x1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))
-   (pred (pred (pred x1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))
-   (pred (pred x1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))) (pred x1))))
-(assert
- (not (= (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))) x1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred (pred (pred (pred (pred x1)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred (pred (pred (pred x1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred (pred (pred x1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred (pred x1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred (pred x1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))
-   (pred x1))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))) x1)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred x1)))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred (pred (pred (pred x1)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred (pred (pred x1))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred (pred x1)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred (pred x1))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred (pred x1)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   (pred x1))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred x1))))))))))
-   x1)))
-(assert (not (= (pred zero) zero)))
-(assert (not (= (pred (pred zero)) (pred zero))))
-(assert (not (= (pred (pred zero)) zero)))
-(assert (not (= (pred (pred (pred zero))) (pred (pred zero)))))
-(assert (not (= (pred (pred (pred zero))) (pred zero))))
-(assert (not (= (pred (pred (pred zero))) zero)))
-(assert (not (= (pred (pred (pred (pred zero)))) (pred (pred (pred zero))))))
-(assert (not (= (pred (pred (pred (pred zero)))) (pred (pred zero)))))
-(assert (not (= (pred (pred (pred (pred zero)))) (pred zero))))
-(assert (not (= (pred (pred (pred (pred zero)))) zero)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred zero))))) (pred (pred (pred (pred zero)))))))
-(assert
- (not (= (pred (pred (pred (pred (pred zero))))) (pred (pred (pred zero))))))
-(assert (not (= (pred (pred (pred (pred (pred zero))))) (pred (pred zero)))))
-(assert (not (= (pred (pred (pred (pred (pred zero))))) (pred zero))))
-(assert (not (= (pred (pred (pred (pred (pred zero))))) zero)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred zero))))))
-   (pred (pred (pred (pred (pred zero))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred zero))))))
-   (pred (pred (pred (pred zero)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred zero)))))) (pred (pred (pred zero))))))
-(assert
- (not (= (pred (pred (pred (pred (pred (pred zero)))))) (pred (pred zero)))))
-(assert (not (= (pred (pred (pred (pred (pred (pred zero)))))) (pred zero))))
-(assert (not (= (pred (pred (pred (pred (pred (pred zero)))))) zero)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred zero)))))))
-   (pred (pred (pred (pred (pred (pred zero)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred zero)))))))
-   (pred (pred (pred (pred (pred zero))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred zero)))))))
-   (pred (pred (pred (pred zero)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred zero)))))))
-   (pred (pred (pred zero))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred zero))))))) (pred (pred zero)))))
-(assert
- (not (= (pred (pred (pred (pred (pred (pred (pred zero))))))) (pred zero))))
-(assert (not (= (pred (pred (pred (pred (pred (pred (pred zero))))))) zero)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))
-   (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))
-   (pred (pred (pred (pred (pred (pred zero)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))
-   (pred (pred (pred (pred (pred zero))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))
-   (pred (pred (pred (pred zero)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))
-   (pred (pred (pred zero))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))
-   (pred (pred zero)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))) (pred zero))))
-(assert
- (not (= (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))) zero)))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred (pred (pred (pred (pred zero)))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred (pred (pred (pred zero))))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred (pred (pred zero)))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred (pred zero))))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred (pred zero)))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))
-   (pred zero))))
-(assert
- (not
-  (= (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))) zero)))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred (pred (pred (pred (pred (pred zero)))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred (pred (pred (pred zero)))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred (pred (pred zero))))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred (pred zero)))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred (pred zero))))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred (pred zero)))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   (pred zero))))
-(assert
- (not
-  (=
-   (pred (pred (pred (pred (pred (pred (pred (pred (pred (pred zero))))))))))
-   zero)))
+ (=>
+  (and (is-cons (cdr x2)) (is-node (car (cdr x2)))
+   (is-cons (children (car (cdr x2)))))
+  (not (= (cdr (children (car (cdr x2)))) (cdr x2)))))
+(assert
+ (=>
+  (and (is-cons x2) (is-cons (cdr x2)) (is-node (car (cdr x2)))
+   (is-cons (children (car (cdr x2)))))
+  (not (= (cdr (children (car (cdr x2)))) x2))))
+(assert
+ (=> (and (is-cons (cdr x2)) (is-node (car (cdr x2))))
+  (not (= (children (car (cdr x2))) (cdr x2)))))
+(assert
+ (=> (and (is-cons x2) (is-cons (cdr x2)) (is-node (car (cdr x2))))
+  (not (= (children (car (cdr x2))) x2))))
+(assert
+ (=> (and (is-node (car (cdr x2))) (is-cons (children (car (cdr x2)))))
+  (not (= (car (children (car (cdr x2)))) (car (cdr x2))))))
+(assert
+ (=> (and (is-cons (cdr x2)) (is-node (car (cdr x2))))
+  (not (= (children (car (cdr x2))) (cdr x2)))))
+(assert
+ (=> (and (is-cons x2) (is-cons (cdr x2)) (is-node (car (cdr x2))))
+  (not (= (children (car (cdr x2))) x2))))
+(assert (=> (and (is-cons x2)) (not (= (cdr x2) x2))))
+(assert
+ (=> (and (is-succ (data (car x2))))
+  (not (= (pred (data (car x2))) (data (car x2))))))
+(assert
+ (=> (and (is-succ (pred (data (car x2)))))
+  (not (= (pred (pred (data (car x2)))) (pred (data (car x2)))))))
+(assert
+ (=> (and (is-succ (data (car x2))) (is-succ (pred (data (car x2)))))
+  (not (= (pred (pred (data (car x2)))) (data (car x2))))))
+(assert
+ (=> (and (is-succ (data (car x2))))
+  (not (= (pred (data (car x2))) (data (car x2))))))
+(assert
+ (=> (and (is-cons x2) (is-node (car x2))) (not (= (children (car x2)) x2))))
+(assert
+ (=> (and (is-cons (children (car x2))))
+  (not (= (cdr (children (car x2))) (children (car x2))))))
+(assert
+ (=> (and (is-cons x2) (is-node (car x2)) (is-cons (children (car x2))))
+  (not (= (cdr (children (car x2))) x2))))
+(assert
+ (=> (and (is-cons (cdr (children (car x2)))))
+  (not (= (cdr (cdr (children (car x2)))) (cdr (children (car x2)))))))
+(assert
+ (=> (and (is-cons (children (car x2))) (is-cons (cdr (children (car x2)))))
+  (not (= (cdr (cdr (children (car x2)))) (children (car x2))))))
+(assert
+ (=>
+  (and (is-cons x2) (is-node (car x2)) (is-cons (children (car x2)))
+   (is-cons (cdr (children (car x2)))))
+  (not (= (cdr (cdr (children (car x2)))) x2))))
+(assert
+ (=> (and (is-cons (children (car x2))))
+  (not (= (cdr (children (car x2))) (children (car x2))))))
+(assert
+ (=> (and (is-cons x2) (is-node (car x2)) (is-cons (children (car x2))))
+  (not (= (cdr (children (car x2))) x2))))
+(assert
+ (=>
+  (and (is-node (car x2)) (is-cons (children (car x2)))
+   (is-cons (cdr (children (car x2)))))
+  (not (= (car (cdr (children (car x2)))) (car x2)))))
+(assert
+ (=> (and (is-cons (children (car x2))))
+  (not (= (cdr (children (car x2))) (children (car x2))))))
+(assert
+ (=> (and (is-cons x2) (is-node (car x2)) (is-cons (children (car x2))))
+  (not (= (cdr (children (car x2))) x2))))
+(assert
+ (=> (and (is-cons x2) (is-node (car x2))) (not (= (children (car x2)) x2))))
+(assert
+ (=> (and (is-node (car x2)) (is-cons (children (car x2))))
+  (not (= (car (children (car x2))) (car x2)))))
+(assert
+ (=> (and (is-node (car x2)) (is-cons (children (car x2))))
+  (not (= (car (children (car x2))) (car x2)))))
+(assert
+ (=> (and (is-cons (children (car x2))) (is-node (car (children (car x2)))))
+  (not (= (children (car (children (car x2)))) (children (car x2))))))
+(assert
+ (=>
+  (and (is-cons x2) (is-node (car x2)) (is-cons (children (car x2)))
+   (is-node (car (children (car x2)))))
+  (not (= (children (car (children (car x2)))) x2))))
+(assert
+ (=> (and (is-node (car x2)) (is-cons (children (car x2))))
+  (not (= (car (children (car x2))) (car x2)))))
+(assert
+ (=> (and (is-cons x2) (is-node (car x2))) (not (= (children (car x2)) x2))))
+(assert (=> (and (is-cons null)) (not (= (cdr null) null))))
+(assert (=> (and (is-cons (cdr null))) (not (= (cdr (cdr null)) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)))
+  (not (= (cdr (cdr null)) null))))
+(assert
+ (=> (and (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) (cdr (cdr null))))))
+(assert
+ (=> (and (is-cons (cdr null)) (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)) (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) null))))
+(assert
+ (=> (and (is-cons (cdr (cdr (cdr null)))))
+  (not (= (cdr (cdr (cdr (cdr null)))) (cdr (cdr (cdr null)))))))
+(assert
+ (=> (and (is-cons (cdr (cdr null))) (is-cons (cdr (cdr (cdr null)))))
+  (not (= (cdr (cdr (cdr (cdr null)))) (cdr (cdr null))))))
+(assert
+ (=>
+  (and (is-cons (cdr null)) (is-cons (cdr (cdr null)))
+   (is-cons (cdr (cdr (cdr null)))))
+  (not (= (cdr (cdr (cdr (cdr null)))) (cdr null)))))
+(assert
+ (=>
+  (and (is-cons null) (is-cons (cdr null)) (is-cons (cdr (cdr null)))
+   (is-cons (cdr (cdr (cdr null)))))
+  (not (= (cdr (cdr (cdr (cdr null)))) null))))
+(assert
+ (=> (and (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) (cdr (cdr null))))))
+(assert
+ (=> (and (is-cons (cdr null)) (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)) (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) null))))
+(assert
+ (=> (and (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) (cdr (cdr null))))))
+(assert
+ (=> (and (is-cons (cdr null)) (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)) (is-cons (cdr (cdr null))))
+  (not (= (cdr (cdr (cdr null))) null))))
+(assert (=> (and (is-cons (cdr null))) (not (= (cdr (cdr null)) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)))
+  (not (= (cdr (cdr null)) null))))
+(assert
+ (=> (and (is-cons (cdr (cdr null))) (is-node (car (cdr (cdr null)))))
+  (not (= (children (car (cdr (cdr null)))) (cdr (cdr null))))))
+(assert
+ (=>
+  (and (is-cons (cdr null)) (is-cons (cdr (cdr null)))
+   (is-node (car (cdr (cdr null)))))
+  (not (= (children (car (cdr (cdr null)))) (cdr null)))))
+(assert
+ (=>
+  (and (is-cons null) (is-cons (cdr null)) (is-cons (cdr (cdr null)))
+   (is-node (car (cdr (cdr null)))))
+  (not (= (children (car (cdr (cdr null)))) null))))
+(assert (=> (and (is-cons (cdr null))) (not (= (cdr (cdr null)) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)))
+  (not (= (cdr (cdr null)) null))))
+(assert (=> (and (is-cons null)) (not (= (cdr null) null))))
+(assert
+ (=> (and (is-succ (data (car (cdr null)))))
+  (not (= (pred (data (car (cdr null)))) (data (car (cdr null)))))))
+(assert
+ (=> (and (is-cons (cdr null)) (is-node (car (cdr null))))
+  (not (= (children (car (cdr null))) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)) (is-node (car (cdr null))))
+  (not (= (children (car (cdr null))) null))))
+(assert
+ (=> (and (is-cons (children (car (cdr null)))))
+  (not (= (cdr (children (car (cdr null)))) (children (car (cdr null)))))))
+(assert
+ (=>
+  (and (is-cons (cdr null)) (is-node (car (cdr null)))
+   (is-cons (children (car (cdr null)))))
+  (not (= (cdr (children (car (cdr null)))) (cdr null)))))
+(assert
+ (=>
+  (and (is-cons null) (is-cons (cdr null)) (is-node (car (cdr null)))
+   (is-cons (children (car (cdr null)))))
+  (not (= (cdr (children (car (cdr null)))) null))))
+(assert
+ (=> (and (is-cons (cdr null)) (is-node (car (cdr null))))
+  (not (= (children (car (cdr null))) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)) (is-node (car (cdr null))))
+  (not (= (children (car (cdr null))) null))))
+(assert
+ (=> (and (is-node (car (cdr null))) (is-cons (children (car (cdr null)))))
+  (not (= (car (children (car (cdr null)))) (car (cdr null))))))
+(assert
+ (=> (and (is-cons (cdr null)) (is-node (car (cdr null))))
+  (not (= (children (car (cdr null))) (cdr null)))))
+(assert
+ (=> (and (is-cons null) (is-cons (cdr null)) (is-node (car (cdr null))))
+  (not (= (children (car (cdr null))) null))))
+(assert (=> (and (is-cons null)) (not (= (cdr null) null))))
+(assert
+ (=> (and (is-succ (data (car null))))
+  (not (= (pred (data (car null))) (data (car null))))))
+(assert
+ (=> (and (is-succ (pred (data (car null)))))
+  (not (= (pred (pred (data (car null)))) (pred (data (car null)))))))
+(assert
+ (=> (and (is-succ (data (car null))) (is-succ (pred (data (car null)))))
+  (not (= (pred (pred (data (car null)))) (data (car null))))))
+(assert
+ (=> (and (is-succ (data (car null))))
+  (not (= (pred (data (car null))) (data (car null))))))
+(assert
+ (=> (and (is-cons null) (is-node (car null)))
+  (not (= (children (car null)) null))))
+(assert
+ (=> (and (is-cons (children (car null))))
+  (not (= (cdr (children (car null))) (children (car null))))))
+(assert
+ (=>
+  (and (is-cons null) (is-node (car null)) (is-cons (children (car null))))
+  (not (= (cdr (children (car null))) null))))
+(assert
+ (=> (and (is-cons (cdr (children (car null)))))
+  (not (= (cdr (cdr (children (car null)))) (cdr (children (car null)))))))
+(assert
+ (=>
+  (and (is-cons (children (car null))) (is-cons (cdr (children (car null)))))
+  (not (= (cdr (cdr (children (car null)))) (children (car null))))))
+(assert
+ (=>
+  (and (is-cons null) (is-node (car null)) (is-cons (children (car null)))
+   (is-cons (cdr (children (car null)))))
+  (not (= (cdr (cdr (children (car null)))) null))))
+(assert
+ (=> (and (is-cons (children (car null))))
+  (not (= (cdr (children (car null))) (children (car null))))))
+(assert
+ (=>
+  (and (is-cons null) (is-node (car null)) (is-cons (children (car null))))
+  (not (= (cdr (children (car null))) null))))
+(assert
+ (=>
+  (and (is-node (car null)) (is-cons (children (car null)))
+   (is-cons (cdr (children (car null)))))
+  (not (= (car (cdr (children (car null)))) (car null)))))
+(assert
+ (=> (and (is-cons (children (car null))))
+  (not (= (cdr (children (car null))) (children (car null))))))
+(assert
+ (=>
+  (and (is-cons null) (is-node (car null)) (is-cons (children (car null))))
+  (not (= (cdr (children (car null))) null))))
+(assert
+ (=> (and (is-cons null) (is-node (car null)))
+  (not (= (children (car null)) null))))
+(assert
+ (=> (and (is-node (car null)) (is-cons (children (car null))))
+  (not (= (car (children (car null))) (car null)))))
+(assert
+ (=> (and (is-node (car null)) (is-cons (children (car null))))
+  (not (= (car (children (car null))) (car null)))))
+(assert
+ (=>
+  (and (is-cons (children (car null))) (is-node (car (children (car null)))))
+  (not (= (children (car (children (car null)))) (children (car null))))))
+(assert
+ (=>
+  (and (is-cons null) (is-node (car null)) (is-cons (children (car null)))
+   (is-node (car (children (car null)))))
+  (not (= (children (car (children (car null)))) null))))
+(assert
+ (=> (and (is-node (car null)) (is-cons (children (car null))))
+  (not (= (car (children (car null))) (car null)))))
+(assert
+ (=> (and (is-cons null) (is-node (car null)))
+  (not (= (children (car null)) null))))
+(assert (=> (and (is-succ (data x3))) (not (= (pred (data x3)) (data x3)))))
+(assert
+ (=> (and (is-succ (pred (data x3))))
+  (not (= (pred (pred (data x3))) (pred (data x3))))))
+(assert
+ (=> (and (is-succ (data x3)) (is-succ (pred (data x3))))
+  (not (= (pred (pred (data x3))) (data x3)))))
+(assert
+ (=> (and (is-succ (pred (pred (data x3)))))
+  (not (= (pred (pred (pred (data x3)))) (pred (pred (data x3)))))))
+(assert
+ (=> (and (is-succ (pred (data x3))) (is-succ (pred (pred (data x3)))))
+  (not (= (pred (pred (pred (data x3)))) (pred (data x3))))))
+(assert
+ (=>
+  (and (is-succ (data x3)) (is-succ (pred (data x3)))
+   (is-succ (pred (pred (data x3)))))
+  (not (= (pred (pred (pred (data x3)))) (data x3)))))
+(assert
+ (=> (and (is-succ (pred (data x3))))
+  (not (= (pred (pred (data x3))) (pred (data x3))))))
+(assert
+ (=> (and (is-succ (data x3)) (is-succ (pred (data x3))))
+  (not (= (pred (pred (data x3))) (data x3)))))
+(assert (=> (and (is-succ (data x3))) (not (= (pred (data x3)) (data x3)))))
+(assert
+ (=> (and (is-cons (children x3)))
+  (not (= (cdr (children x3)) (children x3)))))
+(assert
+ (=> (and (is-cons (cdr (children x3))))
+  (not (= (cdr (cdr (children x3))) (cdr (children x3))))))
+(assert
+ (=> (and (is-cons (children x3)) (is-cons (cdr (children x3))))
+  (not (= (cdr (cdr (children x3))) (children x3)))))
+(assert
+ (=> (and (is-cons (cdr (cdr (children x3)))))
+  (not (= (cdr (cdr (cdr (children x3)))) (cdr (cdr (children x3)))))))
+(assert
+ (=> (and (is-cons (cdr (children x3))) (is-cons (cdr (cdr (children x3)))))
+  (not (= (cdr (cdr (cdr (children x3)))) (cdr (children x3))))))
+(assert
+ (=>
+  (and (is-cons (children x3)) (is-cons (cdr (children x3)))
+   (is-cons (cdr (cdr (children x3)))))
+  (not (= (cdr (cdr (cdr (children x3)))) (children x3)))))
+(assert
+ (=> (and (is-cons (cdr (children x3))))
+  (not (= (cdr (cdr (children x3))) (cdr (children x3))))))
+(assert
+ (=> (and (is-cons (children x3)) (is-cons (cdr (children x3))))
+  (not (= (cdr (cdr (children x3))) (children x3)))))
+(assert
+ (=>
+  (and (is-node x3) (is-cons (children x3)) (is-cons (cdr (children x3)))
+   (is-cons (cdr (cdr (children x3)))))
+  (not (= (car (cdr (cdr (children x3)))) x3))))
+(assert
+ (=> (and (is-cons (cdr (children x3))))
+  (not (= (cdr (cdr (children x3))) (cdr (children x3))))))
+(assert
+ (=> (and (is-cons (children x3)) (is-cons (cdr (children x3))))
+  (not (= (cdr (cdr (children x3))) (children x3)))))
+(assert
+ (=> (and (is-cons (children x3)))
+  (not (= (cdr (children x3)) (children x3)))))
+(assert
+ (=> (and (is-node x3) (is-cons (children x3)) (is-cons (cdr (children x3))))
+  (not (= (car (cdr (children x3))) x3))))
+(assert
+ (=> (and (is-node x3) (is-cons (children x3)) (is-cons (cdr (children x3))))
+  (not (= (car (cdr (children x3))) x3))))
+(assert
+ (=> (and (is-cons (cdr (children x3))) (is-node (car (cdr (children x3)))))
+  (not (= (children (car (cdr (children x3)))) (cdr (children x3))))))
+(assert
+ (=>
+  (and (is-cons (children x3)) (is-cons (cdr (children x3)))
+   (is-node (car (cdr (children x3)))))
+  (not (= (children (car (cdr (children x3)))) (children x3)))))
+(assert
+ (=> (and (is-node x3) (is-cons (children x3)) (is-cons (cdr (children x3))))
+  (not (= (car (cdr (children x3))) x3))))
+(assert
+ (=> (and (is-cons (children x3)))
+  (not (= (cdr (children x3)) (children x3)))))
+(assert
+ (=> (and (is-node x3) (is-cons (children x3)))
+  (not (= (car (children x3)) x3))))
+(assert
+ (=> (and (is-succ (data (car (children x3)))))
+  (not (= (pred (data (car (children x3)))) (data (car (children x3)))))))
+(assert
+ (=> (and (is-node x3) (is-cons (children x3)))
+  (not (= (car (children x3)) x3))))
+(assert
+ (=> (and (is-cons (children x3)) (is-node (car (children x3))))
+  (not (= (children (car (children x3))) (children x3)))))
+(assert
+ (=> (and (is-cons (children (car (children x3)))))
+  (not
+   (= (cdr (children (car (children x3)))) (children (car (children x3)))))))
+(assert
+ (=>
+  (and (is-cons (children x3)) (is-node (car (children x3)))
+   (is-cons (children (car (children x3)))))
+  (not (= (cdr (children (car (children x3)))) (children x3)))))
+(assert
+ (=> (and (is-cons (children x3)) (is-node (car (children x3))))
+  (not (= (children (car (children x3))) (children x3)))))
+(assert
+ (=>
+  (and (is-node (car (children x3))) (is-cons (children (car (children x3)))))
+  (not (= (car (children (car (children x3)))) (car (children x3))))))
+(assert
+ (=>
+  (and (is-node x3) (is-cons (children x3)) (is-node (car (children x3)))
+   (is-cons (children (car (children x3)))))
+  (not (= (car (children (car (children x3)))) x3))))
+(assert
+ (=> (and (is-cons (children x3)) (is-node (car (children x3))))
+  (not (= (children (car (children x3))) (children x3)))))
+(assert
+ (=> (and (is-node x3) (is-cons (children x3)))
+  (not (= (car (children x3)) x3))))
+(assert (=> (and (is-succ x1)) (not (= (pred x1) x1))))
+(assert (=> (and (is-succ (pred x1))) (not (= (pred (pred x1)) (pred x1)))))
+(assert
+ (=> (and (is-succ x1) (is-succ (pred x1))) (not (= (pred (pred x1)) x1))))
+(assert
+ (=> (and (is-succ (pred (pred x1))))
+  (not (= (pred (pred (pred x1))) (pred (pred x1))))))
+(assert
+ (=> (and (is-succ (pred x1)) (is-succ (pred (pred x1))))
+  (not (= (pred (pred (pred x1))) (pred x1)))))
+(assert
+ (=> (and (is-succ x1) (is-succ (pred x1)) (is-succ (pred (pred x1))))
+  (not (= (pred (pred (pred x1))) x1))))
+(assert (=> (and (is-succ (pred x1))) (not (= (pred (pred x1)) (pred x1)))))
+(assert
+ (=> (and (is-succ x1) (is-succ (pred x1))) (not (= (pred (pred x1)) x1))))
+(assert (=> (and (is-succ x1)) (not (= (pred x1) x1))))
+(assert (=> (and (is-succ zero)) (not (= (pred zero) zero))))
+(assert
+ (=> (and (is-succ (pred zero))) (not (= (pred (pred zero)) (pred zero)))))
+(assert
+ (=> (and (is-succ zero) (is-succ (pred zero)))
+  (not (= (pred (pred zero)) zero))))
+(assert
+ (=> (and (is-succ (pred (pred zero))))
+  (not (= (pred (pred (pred zero))) (pred (pred zero))))))
+(assert
+ (=> (and (is-succ (pred zero)) (is-succ (pred (pred zero))))
+  (not (= (pred (pred (pred zero))) (pred zero)))))
+(assert
+ (=> (and (is-succ zero) (is-succ (pred zero)) (is-succ (pred (pred zero))))
+  (not (= (pred (pred (pred zero))) zero))))
+(assert
+ (=> (and (is-succ (pred zero))) (not (= (pred (pred zero)) (pred zero)))))
+(assert
+ (=> (and (is-succ zero) (is-succ (pred zero)))
+  (not (= (pred (pred zero)) zero))))
+(assert (=> (and (is-succ zero)) (not (= (pred zero) zero))))
 (check-sat)
 

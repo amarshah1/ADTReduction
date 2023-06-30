@@ -12,7 +12,7 @@
 (declare-const y MyList)
 
 (assert (= x (Cons 1 Nil)))
-(assert (and (= y (Tail x)) (is-Nil x)))
+(assert (and (= y (Tail (Tail x))) (is-Nil x)))
 (assert (is-Cons x))
 
 (check-sat)

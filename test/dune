@@ -1,4 +1,4 @@
 (test
  (name reduce)
  (flags :standard -warn-error -A)
- (libraries ounit2 R1inline R2flatten R3normalize R4reduce_rules R5reduce_axioms Typecheck Context))
+ (libraries ounit2 R1inline R3flatten R4normalize R5reduce_rules R6reduce_axioms Typecheck Context))
